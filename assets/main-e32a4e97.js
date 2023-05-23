@@ -11826,7 +11826,7 @@ const panel = {
     let tablapendiente = "";
     let tablaresuelto = "";
     for (const tiket of tickets) {
-      if (tiket.estado == "pendiente") {
+      if (tiket.estado === "pendiente") {
         tablapendiente += `     <tr id="${tiket.id}">
         <td>${tiket.id}</td>
         <td>${tiket.created_at}</td>
@@ -11877,10 +11877,11 @@ const panel = {
         const ticketid = await Tickets.getById(id);
         ticketid.estado = "resuelto";
         ticketid.update();
-        alert("Se ha resuelto el ticket");
+        console.log("Se ha resuelto el ticket");
         const trId = document.getElementById(id);
         trId.remove();
         const tr = document.createElement("tr");
+        tr.setAttribute("id", ticketid.id);
         tr.innerHTML = `
         <td>${ticketid.id}</td>
         <td>${ticketid.created_at}</td>
@@ -11895,7 +11896,7 @@ const panel = {
         </td>
         <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
         </button></td>
-        <td><button class="btn btn-danger" title="Eliminar ticket"><i class="bi bi-trash3"></i>
+        <td><button class="btn btn-danger eliminar" data-id="${ticketid.id}" title="Eliminar ticket"><i class="bi bi-trash3"></i>
         </i>
         </button></td>
         </tr>
