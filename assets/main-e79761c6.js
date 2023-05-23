@@ -11661,23 +11661,42 @@ class User {
     return new User(user.id, user.email);
   }
 }
-const login = {
+const Loginvista = {
   template: `
-  <div class="pt-5">
+  <div class="pt-5 mt-5">
   <h1 class="w-100 text-center">Login</h1>
   <form action="" class="form p-4 border shadow bordered mt-5 mx-auto" style="width: 400px;">
     <label for="email" class="mt-2 form-label">User: </label>
-    <input type="text" class="form-control" placeholder="usuario@mail.com">
+    <input type="text" class="form-control" placeholder="usuario@mail.com" id="emailL">
 
     <label for="pass" class="mt-2 form-label">Contraseña: </label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" id="contrasenyaL">
 
-    <input type="text" class="mt-4 w-100 btn btn-primary" value="Entrar" id="enviar">
+    <input type="text" class="mt-4 w-100 btn btn-primary enviarLogin" value="Entrar" >
   </form>
 </div>
 
   `,
   script: () => {
+    const main2 = document.querySelector("main");
+    main2.addEventListener("click", async (e) => {
+      if (e.target.classList.contains("enviarLogin")) {
+        e.preventDefault();
+        try {
+          const usuario = {
+            email: document.querySelector("#emailL").value,
+            password: document.querySelector("#contrasenyaL").value
+          };
+          const usuarioLogeado = await User.login(usuario);
+          const emailLog = document.querySelector("#emailLogeado");
+          emailLog.innerHTML = usuarioLogeado.email;
+          alert("Se ha iniciado correctamente");
+        } catch (error) {
+          console.log(error);
+          alert("Ha habido un error al logearse");
+        }
+      }
+    });
   }
 };
 class Tickets {
@@ -11809,7 +11828,7 @@ const panel = {
         <td>Aplicación se cierra inesperadamente</td>
         <td>Sofía Fernández</td>
         <td><button class="btn btn-success" title="Resolver ticket">Resolver</button></td>
-        <td><button class="btn btn-warning" title="Añadir comentario"><i class="bi  bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+        <td><button class="btn btn-warning" title="Añadir comentario"><i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
         </button>
         </td>
         <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
@@ -12024,7 +12043,7 @@ const panel = {
 };
 const registro = {
   template: `
-  <div class="pt-5">
+  <div class="pt-5 mt-5">
   <h1 class="w-100 text-center">Registro</h1>
   <form action="" class="form p-4 border shadow bordered mt-5 mx-auto" style="width: 400px;">
     <label for="email" class="mt-2 form-label">User: </label>
@@ -12048,8 +12067,8 @@ const registro = {
             password: document.querySelector("#contrasenya").value
           };
           const nuevoUser = await User.create(usuario);
-          main2.innerHTML = login.innerHTML;
-          login.script();
+          main2.innerHTML = Loginvista.template;
+          Loginvista.script();
           alert("Se ha creado el usuario correctamente");
         } catch (error) {
           console.log(error);
@@ -12063,36 +12082,50 @@ const header = {
   template: `
   
 <!-- Navbar  -->
-<nav class=" bg-light ">
-  <div class="d-flex">
-  <h3>Gestión de incidencias FPLLEFIA</h3> 
-  <button class="m-2" id="panel">Panel</button> 
-  <button class="m-2" id="login">Login</button> 
-  <button class="m-2" id="registro">Registro</button> 
-
+<nav class="navbar navbar-expand-sm bg-light fixed-top">
+  <div class="container-fluid">
+    <h3>Gestión de incidencias FPLLEFIA</h3> 
+    
+    <div id="botones">  
+      <button class="m-2 login">Login</button> 
+      <button class="m-2 registro">Registro</button> 
+    </div> 
+    <div id="emailLogeado"></div>
   </div>
 </nav>
 
 
+
   `,
   script: async () => {
-    const logearte = document.querySelector("#login");
-    const panelM = document.querySelector("#panel");
-    const registroM = document.querySelector("#registro");
+    const botones = document.querySelector("#botones");
+    try {
+      const usuarioLogueado = await User.getUser();
+      if (usuarioLogueado) {
+        botones.innerHTML = `      
+        <button class="m-2 Panel">Panel</button> 
+        <button class="m-2 Login">Login</button> 
+        <button class="m-2 registro">Registro</button> `;
+      }
+    } catch (error) {
+    }
+    const header2 = document.querySelector("header");
     const main2 = document.querySelector("main");
-    logearte.addEventListener("click", async (e) => {
-      main2.innerHTML = login.template;
-    });
-    panelM.addEventListener("click", async (e) => {
-      main2.innerHTML = panel.template;
-      panel.script();
-    });
-    registroM.addEventListener("click", async (e) => {
-      main2.innerHTML = registro.template;
-      registro.script();
+    header2.addEventListener("click", async (e) => {
+      if (e.target.classList.contains("panel")) {
+        main2.innerHTML = panel.template;
+        panel.script();
+      }
+      if (e.target.classList.contains("login")) {
+        main2.innerHTML = Loginvista.template;
+        Loginvista.script();
+      }
+      if (e.target.classList.contains("registro")) {
+        main2.innerHTML = registro.template;
+        registro.script();
+      }
     });
   }
 };
 document.querySelector("#header").innerHTML = header.template;
 header.script();
-window.location = "/Prueba/#/home";
