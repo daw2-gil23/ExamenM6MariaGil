@@ -35,7 +35,7 @@ export const registro = {
           alert('Se ha creado el usuario correctamente')
         } catch (error) {
           console.log(error)
-          alert('Ha habido un error en la base de datos')
+          alert('Ha habido un error en la base de datos ' + error)
         }
       }
     })

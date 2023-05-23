@@ -1,4 +1,5 @@
 import { User } from '../bd/user'
+import { home } from './home'
 
 export const Loginvista = {
   template: `
@@ -36,13 +37,14 @@ export const Loginvista = {
           const botones = document.querySelector('#botones')
 
           botones.innerHTML = `      
-              <button class="m-2 panel">Panel</button> 
-              <button class="m-2 deslogeate">Deslogeate</button> `
+              <button class="m-2 panel btn btn-dark">Panel</button> 
+              <button class="m-2 deslogeate btn btn-dark">Deslogeate</button> `
 
           alert('Se ha iniciado correctamente')
+          main.innerHTML = home.template
         } catch (error) {
           console.log(error)
-          alert('Ha habido un error al logearse')
+          alert('Ha habido un error al logearse ' + error)
         }
       }
     })

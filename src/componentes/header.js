@@ -1,4 +1,5 @@
 import { User } from '../bd/user.js'
+import { home } from '../vistas/home.js'
 import { Loginvista } from '../vistas/loginVista.js'
 import { panel } from '../vistas/panel.js'
 import { registro } from '../vistas/registroVista.js'
@@ -9,11 +10,11 @@ export const header = {
 <!-- Navbar  -->
 <nav class="navbar navbar-expand-sm bg-light fixed-top">
   <div class="container-fluid">
-    <h3>Gestión de incidencias FPLLEFIA</h3> 
+    <h3 class="home">Gestión de incidencias FPLLEFIA</h3> 
     
     <div id="botones">  
-      <button class="m-2 login">Login</button> 
-      <button class="m-2 registro">Registro</button> 
+      <button class="m-2 login btn btn-dark">Login</button> 
+      <button class="m-2 registro btn btn-dark">Registro</button> 
     </div> 
     <div id="emailLogeado"></div>
   </div>
@@ -29,8 +30,8 @@ export const header = {
       const usuarioLogueado = await User.getUser()
       if (usuarioLogueado) {
         botones.innerHTML = `      
-        <button class="m-2 panel">Panel</button> 
-        <button class="m-2 deslogeate">Deslogeate</button>`
+        <button class="m-2 panel btn btn-dark">Panel</button> 
+        <button class="m-2 deslogeate btn btn-dark">Deslogeate</button>`
         const emailLog = document.querySelector('#emailLogeado')
         emailLog.innerHTML = usuarioLogueado.email
       }
@@ -57,10 +58,13 @@ export const header = {
       if (e.target.classList.contains('deslogeate')) {
         User.logout()
         botones.innerHTML = `      
-        <button class="m-2 login">Login</button> 
-        <button class="m-2 registro">Registro</button> `
+        <button class="m-2 login btn btn-dark">Login</button> 
+        <button class="m-2 registro btn btn-dark">Registro</button> `
         const emailLog = document.querySelector('#emailLogeado')
         emailLog.innerHTML = ''
+      }
+      if (e.target.classList.contains('home')) {
+        main.innerHTML = home.template
       }
     })
   }

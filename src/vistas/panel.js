@@ -89,7 +89,7 @@ export const panel = {
         </td>
         <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
         </button></td>
-        <td><button class="btn btn-danger" data-id="${tiket.id}" title="Eliminar ticket"><i class="bi bi-trash3"></i>
+        <td><button class="btn btn-danger eliminar" data-id="${tiket.id}" title="Eliminar ticket"><i class="bi bi-trash3"></i>
         </i>
         </button></td>
 
