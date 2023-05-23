@@ -11704,6 +11704,7 @@ const Loginvista = {
               <button class="m-2 panel btn btn-dark">Panel</button> 
               <button class="m-2 deslogeate btn btn-dark">Deslogeate</button> `;
           alert("Se ha iniciado correctamente");
+          main2.innerHTML = home.template;
         } catch (error) {
           console.log(error);
           alert("Ha habido un error al logearse");
