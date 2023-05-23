@@ -11661,6 +11661,15 @@ class User {
     return new User(user.id, user.email);
   }
 }
+const home = {
+  template: `
+    <div class="vh-100 d-flex flex-column align-items-center justify-content-center">
+      <h1>Examen UF4</h1>
+      <del> ¿Qué le dice un .GIF a un .JPEG? -Anímate viejo.</del>
+    </div>
+    
+    `
+};
 const Loginvista = {
   template: `
   <div class="pt-5 mt-5">
@@ -11690,6 +11699,10 @@ const Loginvista = {
           const usuarioLogeado = await User.login(usuario);
           const emailLog = document.querySelector("#emailLogeado");
           emailLog.innerHTML = usuarioLogeado.email;
+          const botones = document.querySelector("#botones");
+          botones.innerHTML = `      
+              <button class="m-2 panel btn btn-dark">Panel</button> 
+              <button class="m-2 deslogeate btn btn-dark">Deslogeate</button> `;
           alert("Se ha iniciado correctamente");
         } catch (error) {
           console.log(error);
@@ -11781,101 +11794,7 @@ const panel = {
       </tr>
     </thead>
     <tbody id="ticketspendientes">
-      <tr>
-        <td>123459</td>
-        <td>18/04/2023</td>
-        <td>T6</td>
-        <td>DAW1</td>
-        <td>PC3</td>
-        <td>Error de impresora</td>
-        <td>Ana Martínez</td>
-        <td><button class="btn btn-success" title="Resolver ticket">Resolver</button></td>
-        <td><button class="btn btn-warning" title="Añadir comentario"><i class="bi  bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-        </button>
-        </td>
-        <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
-        </button></td>
-        <td><button class="btn btn-danger" title="Eliminar ticket"><i class="bi bi-trash3"></i>
-        </i>
-        </button></td>
-
-      </tr>
-      <tr>
-        <td>123460</td>
-        <td>19/04/2023</td>
-        <td>T8</td>
-        <td>DAW2</td>
-        <td>PC4</td>
-        <td>Problema de acceso a archivos</td>
-        <td>Pedro Gómez</td>
-        <td><button class="btn btn-success" title="Resolver ticket">Resolver</button></td>
-        <td><button class="btn btn-warning" title="Añadir comentario"><i class="bi  bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-        </button>
-        </td>
-        <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
-        </button></td>
-        <td><button class="btn btn-danger" title="Eliminar ticket"><i class="bi bi-trash3"></i>
-        </i>
-        </button></td>
-
-      </tr>
-      <tr>
-        <td>123461</td>
-        <td>20/04/2023</td>
-        <td>T6</td>
-        <td>DAW1</td>
-        <td>PC1</td>
-        <td>Aplicación se cierra inesperadamente</td>
-        <td>Sofía Fernández</td>
-        <td><button class="btn btn-success" title="Resolver ticket">Resolver</button></td>
-        <td><button class="btn btn-warning" title="Añadir comentario"><i class="bi bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-        </button>
-        </td>
-        <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
-        </button></td>
-        <td><button class="btn btn-danger" title="Eliminar ticket"><i class="bi bi-trash3"></i>
-        </i>
-        </button></td>
-
-      </tr>
-      <tr>
-        <td>123462</td>
-        <td>21/04/2023</td>
-        <td>T7</td>
-        <td>DAW2</td>
-        <td>PC2</td>
-        <td>Problema de conexión a la red</td>
-        <td>Luis Torres</td>
-        <td><button class="btn btn-success" title="Resolver ticket">Resolver</button></td>
-        <td><button class="btn btn-warning" title="Añadir comentario"><i class="bi  bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-        </button>
-        </td>
-        <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
-        </button></td>
-        <td><button class="btn btn-danger" title="Eliminar ticket"><i class="bi bi-trash3"></i>
-        </i>
-        </button></td>
-
-      </tr>
-      <tr>
-        <td>123463</td>
-        <td>22/04/2023</td>
-        <td>T8</td>
-        <td>DAW1</td>
-        <td>PC3</td>
-        <td>Archivos corruptos</td>
-        <td>Carolina Ramírez</td>
-        <td><button class="btn btn-success" title="Resolver ticket">Resolver</button></td>
-        <td><button class="btn btn-warning" title="Añadir comentario"><i class="bi  bi-pencil" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-        </button>
-        </td>
-        <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
-        </button></td>
-        <td><button class="btn btn-danger" title="Eliminar ticket"><i class="bi bi-trash3"></i>
-        </i>
-        </button></td>
-
-      </tr>
+    
     </tbody>
   </table>
   <h2 class="mt-5">Tickets resueltos</h2>
@@ -11894,53 +11813,6 @@ const panel = {
     </thead>
     <tbody id="ticketsresueltos">
       
-      <tr>
-        <td>123457</td>
-        <td>16/04/2023</td>
-        <td>15/05/2023</td>
-        <td>T7</td>
-        <td>DAW2</td>
-        <td>PC1</td>
-        <td>Problema de conexión a Internet</td>
-        <td>Maria López</td>
-        
-        <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
-        </button></td>
-        <td><button class="btn btn-danger" title="Eliminar ticket"><i class="bi bi-trash3"></i>
-        </i>
-        </button></td>
-      </tr>
-      <tr>
-        <td>123458</td>
-        <td>17/04/2023</td>
-        <td>15/05/2023</td>
-        <td>T8</td>
-        <td>DAW1</td>
-        <td>PC2</td>
-        <td>Pantalla en blanco</td>
-        <td>Juan Rodríguez</td>
-        <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
-        </button></td>
-        <td><button class="btn btn-danger" title="Eliminar ticket"><i class="bi bi-trash3"></i>
-        </i>
-        </button></td>
-      </tr>
-      <tr>
-        <td>123459</td>
-        <td>18/04/2023</td>
-        <td>15/05/2023</td>
-        <td>T8</td>
-        <td>DAW1</td>
-        <td>PC3</td>
-        <td>Error de impresora</td>
-        <td>Ana Martínez</td>
-        <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
-        </button></td>
-        <td><button class="btn btn-danger" title="Eliminar ticket"><i class="bi bi-trash3"></i>
-        </i>
-        </button></td>
-      </tr>
-     
      
     </tbody>
   </table>
@@ -11988,7 +11860,7 @@ const panel = {
         </td>
         <td><button class="btn btn-info" title="Ver comentarios"><i class="bi bi-chat-left-text"></i>
         </button></td>
-        <td><button class="btn btn-danger" data-id="${tiket.id}" title="Eliminar ticket"><i class="bi bi-trash3"></i>
+        <td><button class="btn btn-danger eliminar" data-id="${tiket.id}" title="Eliminar ticket"><i class="bi bi-trash3"></i>
         </i>
         </button></td>
 
@@ -12084,11 +11956,11 @@ const header = {
 <!-- Navbar  -->
 <nav class="navbar navbar-expand-sm bg-light fixed-top">
   <div class="container-fluid">
-    <h3>Gestión de incidencias FPLLEFIA</h3> 
+    <h3 class="home">Gestión de incidencias FPLLEFIA</h3> 
     
     <div id="botones">  
-      <button class="m-2 login">Login</button> 
-      <button class="m-2 registro">Registro</button> 
+      <button class="m-2 login btn btn-dark">Login</button> 
+      <button class="m-2 registro btn btn-dark">Registro</button> 
     </div> 
     <div id="emailLogeado"></div>
   </div>
@@ -12103,9 +11975,10 @@ const header = {
       const usuarioLogueado = await User.getUser();
       if (usuarioLogueado) {
         botones.innerHTML = `      
-        <button class="m-2 Panel">Panel</button> 
-        <button class="m-2 Login">Login</button> 
-        <button class="m-2 registro">Registro</button> `;
+        <button class="m-2 panel btn btn-dark">Panel</button> 
+        <button class="m-2 deslogeate btn btn-dark">Deslogeate</button>`;
+        const emailLog = document.querySelector("#emailLogeado");
+        emailLog.innerHTML = usuarioLogueado.email;
       }
     } catch (error) {
     }
@@ -12124,8 +11997,20 @@ const header = {
         main2.innerHTML = registro.template;
         registro.script();
       }
+      if (e.target.classList.contains("deslogeate")) {
+        User.logout();
+        botones.innerHTML = `      
+        <button class="m-2 login btn btn-dark">Login</button> 
+        <button class="m-2 registro btn btn-dark">Registro</button> `;
+        const emailLog = document.querySelector("#emailLogeado");
+        emailLog.innerHTML = "";
+      }
+      if (e.target.classList.contains("home")) {
+        main2.innerHTML = home.template;
+      }
     });
   }
 };
 document.querySelector("#header").innerHTML = header.template;
 header.script();
+document.querySelector("main").innerHTML = home.template;
